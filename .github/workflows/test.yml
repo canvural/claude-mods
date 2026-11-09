@@ -1,0 +1,45 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  # The mods API is early access: a weekly run against the latest Claude Code
+  # catches a release that breaks a mod before someone installs it.
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Claude Code ${{ matrix.claude-code }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # The version the tests were last checked against, and the newest one.
+        claude-code: ['2.1.319', 'latest']
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Claude Code
+        run: |
+          curl -fsSL https://claude.ai/install.sh | bash -s '${{ matrix.claude-code }}'
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Show version
+        run: claude --version
+
+      - name: Validate the marketplace and every mod
+        run: claude plugin validate --strict .
+
+      - name: Run each mod's tests
+        run: |
+          for mod in mods/*/; do
+            echo "::group::$mod"
+            claude plugin test "$mod"
+            echo "::endgroup::"
+          done
