@@ -40,7 +40,7 @@ git clone https://github.com/canvural/claude-mods
 claude plugin validate ./claude-mods/mods/ask-on-auto-deny
 ```
 
-The mods API is early access and can change between Claude Code releases. Each mod's README says which version it was tested with.
+The mods API is early access and can change between Claude Code releases. CI runs every mod's tests against the latest Claude Code each week.
 
 ## Develop
 

@@ -26,7 +26,7 @@ A mod can't turn the block into a prompt up front, because the permission-decisi
 
 ## Status
 
-Written against Claude Code 2.1.288 and 2.1.289, and confirmed there against a live classifier block in the Desktop app: the dialog appears and **Allow once** runs the blocked call. The tests run the hooks against a stand-in for the engine and pass on 2.1.319. The mods API is early access and can change between releases.
+Confirmed against a live classifier block in the Desktop app: the dialog appears and **Allow once** runs the blocked call. The tests run the hooks against a stand-in for the engine, and CI runs them against the latest Claude Code every week. The mods API is early access and can change between releases.
 
 Without a mod, Claude Code already offers `/permissions` → **Recently denied** → `r` to retry a blocked call with manual approval. A built-in setting for this behaviour is requested in [anthropics/claude-code#92279](https://github.com/anthropics/claude-code/issues/92279).
 
