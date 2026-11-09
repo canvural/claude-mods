@@ -1,0 +1,12 @@
+{
+  "name": "ask-on-auto-deny",
+  "version": "0.1.0",
+  "description": "When auto mode's classifier blocks a tool call, asks you whether to run it anyway instead of silently moving on.",
+  "author": {
+    "name": "Can Vural",
+    "url": "https://github.com/canvural"
+  },
+  "homepage": "https://github.com/canvural/claude-mods/tree/main/mods/ask-on-auto-deny",
+  "repository": "https://github.com/canvural/claude-mods",
+  "license": "MIT"
+}
